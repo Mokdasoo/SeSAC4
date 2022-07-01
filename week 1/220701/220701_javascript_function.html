@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        //전역변수
+        var num;
+
+        function hello(){
+            //지역변수
+            var num=1;
+            alert(num);
+        }
+        hello();
+        alert(num);
+
+        /////////////////////////////////
+
+        var a = 1;
+        var a = 10;
+
+        let b = 2;
+        b = 2;
+        //재선언 불가능 let b = 4;
+
+        const abc = 100;
+        // 재선언, 재할당 불가능 abc = 200;
+
+
+        /////////////////////////////////////
+        var a = 1;
+        var b = "100";
+
+        alert( a + b);
+        alert("number = " + a + "," + a);
+        
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
