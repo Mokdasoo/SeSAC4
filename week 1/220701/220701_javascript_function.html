@@ -3,41 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <script>
-        //전역변수
-        var num;
+        // //전역변수
+        // var num;
 
-        function hello(){
-            //지역변수
-            var num=1;
-            alert(num);
+        // function hello(){
+        //     //지역변수
+        //     var num=1;
+        //     alert(num);
+        // }
+        // hello();
+        // alert(num);
+
+        // /////////////////////////////////
+
+        // var a = 1;
+        // var a = 10;
+
+        // let b = 2;
+        // b = 2;
+        // //재선언 불가능 let b = 4;
+
+        // const abc = 100;
+        // // 재선언, 재할당 불가능 abc = 200;
+
+
+        // /////////////////////////////////////
+        // var a = 1;
+        // var b = "100";
+
+        // alert( a + b);
+        // alert("number = " + a + "," + a);
+
+
+
+        function add(a,b){
+            alert( a + b );
         }
-        hello();
-        alert(num);
-
-        /////////////////////////////////
-
-        var a = 1;
-        var a = 10;
-
-        let b = 2;
-        b = 2;
-        //재선언 불가능 let b = 4;
-
-        const abc = 100;
-        // 재선언, 재할당 불가능 abc = 200;
-
-
-        /////////////////////////////////////
-        var a = 1;
-        var b = "100";
-
-        alert( a + b);
-        alert("number = " + a + "," + a);
-        
 
     </script>
+
 </head>
 <body>
-    
+
+    <button type="button" onclick="add(4,5);">버튼</button>
+
+    <a href="javascript:add(1,2)">a태그입니다.</a>
 </body>
 </html>
