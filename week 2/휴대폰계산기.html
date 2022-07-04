@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>휴대폰 계산기</title>
+        <style>
+            .table2{
+                border : 1;
+                text-align: center;
+                cellspacing : 0 ;
+                
+            }
+            button{
+                width: 100%;
+            }
+            #answer{
+                text-align: right;
+            }
+
+        </style>
+        <script>
+            
+            var val1=0;
+            var val2=0;
+            var oper;
+            var ans=0;
+            
+            
+            function aclear(){
+                document.getElementById("answer").val
+            }
+
+
+
+
+        </script>
+
+    </head>
+    <body>
+        <table class="table2">
+            <tr>
+                <td colspan="4"><input type="text" id = "answer" value=0 ></td>
+            </tr>
+            <tr>
+                <td colspan="3"><button id = "ac" onclick="aclear">AC</button></td>
+                <td><button id = "divide">÷</button></td>
+            </tr>
+            <tr>
+                <td><button class = "num" id = "seven">7</button></td>
+                <td><button class = "num" id = "eight">8</button></td>
+                <td><button class = "num" id = "nine">9</button></td>
+                <td><button id = "mul">X</button></td>
+            </tr>
+            <tr>
+                <td><button class = "num" id = "four">4</button></td>
+                <td><button class = "num" id = "five">5</button></td>
+                <td><button class = "num" id = "six">6</button></td>
+                <td><button id = "minus">-</button></td>
+            </tr>
+            <tr>
+                <td><button class = "num" id = "one">1</button></td>
+                <td><button class = "num" id = "two">2</button></td>
+                <td><button class = "num" id = "three">3</button></td>
+                <td><button id = "plus">+</button></td>
+            </tr>
+            <tr>
+                <td colspan="3"><button class = "num" id = "zero">0</button></td>
+                <td><button id = "cal">=</button></td>
+            </tr>
+
+        </table>
+    </body>
+</html>

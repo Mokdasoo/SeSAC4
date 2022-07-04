@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <script>
+            function cal(){
+                var val1 = parseInt(document.getElementById("value1").value);
+                var val2 = parseInt(document.getElementById("value2").value);
+                var val3 = document.getElementById("value3").value;
+                var val4 = document.getElementById("value4");
+
+                if(val3 == "+")
+                    val4.value = val1 + val2;
+                else if(val3 == "-")
+                    val4.value = val1 - val2;
+                else if(val3 == "*")
+                    val4.value = val1 * val2;
+                else if(val3 == "/")
+                    val4.value = val1 / val2;
+                else
+                    val4.value = "계산할 수 없는 연산자 입니다";
+            }
+            function clear2(){
+                document.getElementById("value1").value = "";
+                document.getElementById("value2").value = "";
+                document.getElementById("value3").value = "";
+                document.getElementById("value4").value = "";
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <span>값1: </span>
+            <input type="text" id="value1" value=""> 
+        </div>
+        <div>
+            <span>값2: </span>
+            <input type="text" id="value2" value=""> 
+        </div>
+        <div>
+            <span>연산자: </span>
+            <input type="text" id="value3" value=""> 
+        </div>
+        <div>
+            <span>결과: </span>
+            <input type="text" id="value4" value=""> 
+        </div>
+        <div style="margin-top: 20px;">
+            <button type="button" onclick="cal();">계산하기</button>
+            <button type="button" onclick="clear2();">초기화</button>
+        </div>
+    </body>
+</html>

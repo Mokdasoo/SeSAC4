@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>방명록 만들기</title>
+        <style>
+            span{
+                font-weight: bold;
+                text-align: center;
+                display: inline-block;
+                width: 55px;
+            }
+            
+            .tname{
+                text-align: center;
+                font-weight: bold;
+                
+            }
+            td{
+                text-align: center;
+                height : 50px;
+            }
+        </style>
+        <script>
+
+            var first = true;
+            var count = 1;
+
+            function addRow(){
+
+                if(first == false)
+                    count++;
+
+                var tbody_01 = document.getElementById("visit");
+                
+                var tr_01 = document.createElement("tr");
+
+                var td_01 = document.createElement("td");
+                var td_02 = document.createElement("td");
+                var td_03 = document.createElement("td");
+                var td_04 = document.createElement("td");
+
+                td_01.innerText = count;
+                td_02.innerText = document.getElementById("writer1").value;
+                td_03.innerText = document.getElementById("content1").value;
+
+                var now = new Date();
+                var month= now.getMonth() + 1;
+
+
+                td_04.innerText = now.getFullYear() + "-" + month +"-" + now.getDate() +
+                " " + now.getHours() + " : " + now.getMinutes();
+
+                tr_01.appendChild(td_01);
+                tr_01.appendChild(td_02);
+                tr_01.appendChild(td_03);
+                tr_01.appendChild(td_04);
+
+                tbody_01.appendChild(tr_01);
+
+                first = false;
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <p>방명록입니다.</p>
+        <div><span>작성자</span> <input type="text" id="writer1" value=""></div>
+        <div><span>내용</span> <input style="width: 90%" type="text" id="content1" value=""></div>
+        <p>
+            <button type="button" onclick="addRow();">작성</button>
+        </p>
+        
+        <table border="1" cellspacing = "1">
+
+            <tbody id = "visit">
+                <tr>
+                    <td class="tname" width = "50px">번호</td>
+                    <td class="tname" width = "70px">작성자</td>
+                    <td class="tname" width = "200px">내용</td>
+                    <td class="tname" width = "150px">작성일</td>
+                </tr>
+
+
+            </tbody>
+            
+
+        </table>
+    </body>
+</html>
