@@ -1,0 +1,39 @@
+<html>
+
+    <head>
+        <title>타이틀</title>
+
+        <script>
+            
+        </script>
+    </head>
+    <body>
+       <img title="1" width="100" height="100" src="https://ssl.pstatic.net/tveta/libs/1245/1245834/fbc4a6cddae7496a3d2f_20220527162811143.jpg" alt="">
+       <img title="2" width="100" height="100" src="https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fdiscovercrop-phinf.pstatic.net%2F%2FMjAyMjA3MDFfMTkx%2FMDAxNjU2NjQ3NDcyNzkx.s1GA-F5bqzE-Hlit4VoRC-0Wm6VeyGp-aIH1mnYYocQg.5qPQtS1XjHa_a-igeLOxY96Eaxl8FQpcnOf9vUTwywcg.JPEG%2Fimage_374x246.jpg%22&type=nf464_260" alt="">
+       <img title="3" width="100" height="100" src="https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fdiscovercrop-phinf.pstatic.net%2F%2FMjAyMjA0MjBfNTUg%2FMDAxNjUwMzk5NDA0NjYw.xQ6zbdSP6FJsXS3E-qOap41no7Ryl_dZ1ua4KtylnL0g.8AxEmCzb2r9niXwHb5MFW9eOMUrSE2BJRAaGeMUm6c8g.JPEG%2Fimage_374x246.jpg%22&type=nf464_260" alt="">
+
+       <div id="div1" class="div1">
+            <input type="text" id="input1" value="값">
+            <button type="button" onclick="submit();">버튼</button>
+            <p class="css1">p태그 1</p>
+            <p class="css1">p태그 2</p>
+            <div>
+                <p class="css1">p태그3</p>
+            </div>
+
+       </div>
+
+       <script>
+            console.log(document.getElementsByTagName("img"));
+            console.log(document.getElementById("input1"));
+            console.log(document.querySelectorAll("#div1 > .css1"));
+
+            function submit(){
+                var input = document.getElementById("input1");
+                console.log(input.value);
+            }
+            
+       </script>
+
+    </body>
+</html>
