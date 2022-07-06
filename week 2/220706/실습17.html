@@ -44,16 +44,31 @@
             }
         </style>
         <script>
-            function post(){
-                var p = document.createElement("p");
-                p.innerText= $("#content").val();
-
-                var findtd = document.querySelectorAll("td");
-                findtd[Number($('#when').val())+11].append(p) = $("#content").val();
-            }
+            
 
             function clickDay(day){
                 $("#when").val(day);
+            }
+
+            function post(){
+                var p = document.createElement("p");
+                p.innerText = $("#content").val();
+                p.className = "scheduleText";
+
+                var findtd = document.querySelectorAll("td");
+                var rightTd = findtd[Number($('#when').val())+11];
+                rightTd.appendChild(p);
+                $("#when").val("");
+                $("#content").val("");
+            }
+
+            function remove(){
+                var findtd = document.querySelectorAll("td");
+                var rightTd = findtd[Number($('#when').val())+11];
+                var childP = rightTd.lastChild;
+                if(childP.className == "scheduleText")
+                    rightTd.removeChild(childP);
+
             }
 
 
@@ -132,6 +147,7 @@
             <div>날짜 : <input type="number" id="when"></div>
             <div>내용 : <input type="text" id="content"></div>
             <button type="button" onclick="post()">작성</button>
+            <button type="button" onclick="remove()">삭제</button>
         </div>
     </body>
 </html>
