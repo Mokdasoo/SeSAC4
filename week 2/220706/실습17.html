@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+            crossorigin="anonymous">
+        </script>
+
+        <script src="../../jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+        <link rel="stylesheet" href="../../jquery-ui-1.13.1.custom/jquery-ui.css">
+
+        <style>
+            table{
+                text-align: center;
+                width: 700px;
+            }
+            caption{
+                font-size: 30px;
+                color: green;
+                font-weight: bold;
+            }
+            day{
+                font-weight: bold;
+            }
+            .sunday{
+                color: red;
+            }
+            .saturday{
+                color: blue;
+            }
+            #writer{
+                position: fixed;
+                left: 750px;
+                top: 0px;
+            }
+            td{
+                width: 100px;
+                height: 100px;
+                vertical-align: top;
+            }
+            td:hover{
+                font-size: 150%;
+                cursor: pointer;
+                font-weight: bold;
+            }
+        </style>
+        <script>
+            function post(){
+                var p = document.createElement("p");
+                p.innerText= $("#content").val();
+
+                var findtd = document.querySelectorAll("td");
+                findtd[Number($('#when').val())+11].append(p) = $("#content").val();
+            }
+
+            function clickDay(day){
+                $("#when").val(day);
+            }
+
+
+
+
+        </script>
+
+
+    </head>
+    <body>
+        <table>
+            <caption>2022년 7월</caption>
+
+            <tbody>
+                <tr class="day">
+                    <td class="sunday">日</td>
+                    <td>月</td>
+                    <td>火</td>
+                    <td>水</td>
+                    <td>木</td>
+                    <td>金</td>
+                    <td class="saturday">土</td>
+                </tr>
+                <tr>
+                    <td class="sunday"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td onclick="clickDay(1)">1</td>
+                    <td onclick="clickDay(2)" class="saturday">2</td>
+                </tr>
+                <tr>
+                    <td onclick="clickDay(3)" class="sunday">3</td>
+                    <td onclick="clickDay(4)">4</td>
+                    <td onclick="clickDay(5)">5</td>
+                    <td onclick="clickDay(6)">6</td>
+                    <td onclick="clickDay(7)">7</td>
+                    <td onclick="clickDay(8)">8</td>
+                    <td onclick="clickDay(9)" class="saturday">9</td>
+                </tr>
+                <tr>
+                    <td onclick="clickDay(10)" class="sunday">10</td>
+                    <td onclick="clickDay(11)">11</td>
+                    <td onclick="clickDay(12)">12</td>
+                    <td onclick="clickDay(13)">13</td>
+                    <td onclick="clickDay(14)">14</td>
+                    <td onclick="clickDay(15)">15</td>
+                    <td onclick="clickDay(16)" class="saturday">16</td>
+                </tr>
+                <tr>
+                    <td onclick="clickDay(17)" class="sunday">17</td>
+                    <td onclick="clickDay(18)" >18</td>
+                    <td onclick="clickDay(19)" >19</td>
+                    <td onclick="clickDay(20)" >20</td>
+                    <td onclick="clickDay(21)" >21</td>
+                    <td onclick="clickDay(22)" >22</td>
+                    <td onclick="clickDay(23)"  class="saturday">23</td>
+                </tr>
+                <tr>
+                    <td onclick="clickDay(24)"  class="sunday">24</td>
+                    <td onclick="clickDay(25)" >25</td>
+                    <td onclick="clickDay(26)" >26</td>
+                    <td onclick="clickDay(27)" >27</td>
+                    <td onclick="clickDay(28)" >28</td>
+                    <td onclick="clickDay(29)" >29</td>
+                    <td onclick="clickDay(30)"  class="saturday">30</td>
+                </tr>
+                <tr>
+                    <td onclick="clickDay(31)"  class="sunday">31</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="writer">
+            <div>날짜 : <input type="number" id="when"></div>
+            <div>내용 : <input type="text" id="content"></div>
+            <button type="button" onclick="post()">작성</button>
+        </div>
+    </body>
+</html>

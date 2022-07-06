@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+            crossorigin="anonymous">
+        </script>
+
+        <script src="../../jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+        <link rel="stylesheet" href="../../jquery-ui-1.13.1.custom/jquery-ui.css">
+
+
+        <script>
+            var i = 0;
+
+            function changeColor(){
+                var colorArr = new Array("red", "orange","yellow","green","blue","indigo","purple");
+                
+                // while(i<6){
+
+                //     if($("div").hasClass(colorArr[i])){
+                //         $("div").switchClass(colorArr[i], colorArr[i+1]);
+                //         break;
+                //     }
+                //     i++;
+                // }
+                // if($("div").hasClass(colorArr[6])){
+                //         $("div").switchClass(colorArr[6], colorArr[0]);
+                //         i = 0;
+                // }
+
+
+                var now = $("div").attr("class");
+                var i = colorArr.indexOf(now);
+
+                if(i==colorArr.length - 1)
+                    $("div").switchClass(now, colorArr[0]);
+                else
+                    $("div").switchClass(now, colorArr[i+1]);
+
+
+
+            }
+        </script>
+
+        <style>
+            div{
+                width: 200px;
+                height: 200px;
+            }
+            div:hover{
+                cursor: pointer;
+            }
+            .red{
+                background-color: red;
+            }
+            .orange{
+                background-color: orange;
+            }
+            .yellow{
+                background-color: yellow;
+            }
+            .green{
+                background-color: green;
+            }
+            .blue{
+                background-color: blue;
+            }
+            .indigo{
+                background-color: indigo;
+            }
+            .purple{
+                background-color: purple;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="red" onclick="changeColor()"></div>
+    </body>
+</html>

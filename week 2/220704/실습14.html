@@ -21,13 +21,10 @@
         </style>
         <script>
 
-            var first = true;
-            var count = 1;
 
             function addRow(){
 
-                if(first == false)
-                    count++;
+                    
 
                 var tbody_01 = document.getElementById("visit");
                 
@@ -38,7 +35,8 @@
                 var td_03 = document.createElement("td");
                 var td_04 = document.createElement("td");
 
-                td_01.innerText = count;
+
+                td_01.innerText = document.querySelectorAll("#visit > tr").length;// = "#visit tr" 후손선택
                 td_02.innerText = document.getElementById("writer1").value;
                 td_03.innerText = document.getElementById("content1").value;
 
@@ -56,7 +54,6 @@
 
                 tbody_01.appendChild(tr_01);
 
-                first = false;
 
             }
 
