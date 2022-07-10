@@ -8,10 +8,240 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
+    <script src="datedropper-jquery.js"></script>
 
-    <title>Cindy Kids</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic+Coding&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
+    <title>DongGeun's WebPage</title>
+    <style>
+      body{
+        /* font-family: 'Black Han Sans', sans-serif; */
+        font-family: 'Nanum Gothic Coding', monospace;
+        /* font-family: 'Nanum Pen Script', cursive; */
+      }
+    </style>
+
+
+
+    <script>
+      function addRow(){
+        var tr_01 = document.createElement("tr");
+        var td_date = document.createElement("td");
+        var td_content = document.createElement("td");
+        var td_file = document.createElement("td");
+
+        var text_date = $("#date-input").val();
+        var text_content = $("#studyContent").val();
+        var text_file = $("#dialogFile").val();
+
+        td_date.text(text_date);
+        td_content.text(text_content);
+        td_file.text(text_file);
+
+        tr_01.append(td_date);
+        tr_01.append(td_content);
+        tr_01.append(td_file);
+
+        $("#studylist").append(tr_01);
+
+      }
+
+
+    </script>
+
 </head>
-<body>
+<body class="">
     
+
+    <!-- display - flex -->
+    <div class="d-flex justify-content-between align-items-center" >
+      <img width="80px" src="./profile.png" alt="프로필이미지">
+      <div class="fs-2">웹개발자를 꿈꾸는 새싹4기 동근's 홈페이지</div>
+      <p></p>
+    </div>
+    
+    <!-- Navs & tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active link-secondary" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" 
+        aria-controls="profile-tab-pane" aria-selected="true">profile</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link link-secondary" id="study-tab" data-bs-toggle="tab" data-bs-target="#study-tab-pane" type="button" role="tab" 
+        aria-controls="study-tab-pane" aria-selected="false">study-dialog</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link link-secondary" id="skills-tab" data-bs-toggle="tab" data-bs-target="#skills-tab-pane" type="button" role="tab" 
+        aria-controls="skills-tab-pane" aria-selected="false">skills</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link link-secondary" id="projects-tab" data-bs-toggle="tab" data-bs-target="#projects-tab-pane" type="button" role="tab" 
+        aria-controls="projects-tab-pane" aria-selected="false">projects</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link link-secondary" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" 
+        aria-controls="contact-tab-pane" aria-selected="false">contact</button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+
+      <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        <div class="d-flex">
+          <img src="./profile.png" alt="" width="300px" height="400px">
+          <div>
+            <h1 class=>이동근 DONG GEUN LEE</h1>
+            <p>새싹 영등포 4기, 웹 풀스택 교육과정 공부중</p>
+          </div>
+        </div>
+      </div>
+      <!-- sizing & spacing -->
+      <div class="tab-pane fade" id="study-tab-pane" role="tabpanel" aria-labelledby="study-tab" tabindex="0">
+        <p>날짜별 공부기록</p>
+        <div class="d-flex justify-content-between">
+          <input id="date-input" type="text" name="date-input" placeholder="날짜를 선택하세요">
+          <input type="file" id="dialogFile" name="dialogFile">
+          <button type="button" class="btn btn-success" onclick="addRow();">기록하기</button>
+        </div>
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="공부한 내용을 기록하세요" id="studyContent" style="height: 200px"></textarea>
+          <label for="studyContent">내용</label>
+        </div>
+        <hr>
+        <p>목록</p>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>날짜</th>
+              <th>공부한 내용</th>
+              <th>첨부파일</th>
+            </tr>
+          </thead>
+          <tbody id="studylist">
+
+          </tbody>
+        </table>
+
+
+
+
+      </div>
+
+
+
+
+      <div class="tab-pane fade" id="skills-tab-pane" role="tabpanel" aria-labelledby="skills-tab" tabindex="0">
+        <div class="w-85 p-3 m-5 text-center" style="background-color:aliceblue;">
+          <span class="fw-bold">front-end</span><hr>
+          <div class="row">
+            <div class="col-md-2 col-sm-3">
+              <img src="./HTML.svg" width = "70px" alt=""><br>
+              HTML
+            </div>
+            <div class="col-md-2 col-sm-3">
+              <img src="./CSS.svg" width = "70px" alt=""><br>
+              CSS
+            </div>
+            <div class="col-md-2 col-sm-3">
+              <img src="./JavaScript.svg" width = "70px" alt=""><br>
+              Javascript
+            </div>
+            <div class="col-md-2 col-sm-3">
+              <img src="./JQuery.svg" width = "70px" alt=""><br>
+              JQuery
+            </div>
+            <div class="col-md-2 col-sm-3">
+              <img src="./Bootstrap.svg" width = "70px" alt=""><br>
+              Bootstrap
+            </div>
+          </div>
+          <span class="fw-bold">etc</span><hr>
+          <div class="row">
+            <div class="col-md-2 col-sm-3">
+              <img src="./C.svg" width = "70px" alt=""><br>
+              C
+            </div>
+            <div class="col-md-2 col-sm-3">
+              <img src="./Git.svg" width = "70px" alt=""><br>
+              Git
+            </div>
+            <div class="col-md-2 col-sm-3">
+              <img src="./Github-Dark.svg" width = "70px" alt=""><br>
+              Github
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="tab-pane fade" id="projects-tab-pane" role="tabpanel" aria-labelledby="projects-tab" tabindex="0">
+        <div class="row">
+          <div class="card col-lg-3 col-md-4" style="width: 18rem;">
+            <img src="./project01.PNG" class="card-img-top" alt="프로젝트01" height="150px">
+            <div class="card-body">
+              <h5 class="card-title">달력 메모</h5>
+              <p class="card-text">해당 일을 클릭하고 내용을 쓰고 작성버튼을 누르면 해당일에 기록이 된다.</p>
+              <a href="../../220706/실습17.html" class="btn btn-success" target="_blank">프로젝트 바로가기</a>
+            </div>
+          </div>
+          <div class="card col-lg-3 col-md-4" style="width: 18rem;">
+            <img src="./project02.PNG" class="card-img-top" alt="프로젝트02" height="150px">
+            <div class="card-body">
+              <h5 class="card-title">색상 변환</h5>
+              <p class="card-text">색상 박스를 클릭시 빨주노초파남보 순으로 하나씩 바뀐다. </p>
+              <a href="../../220706/실습16.html" class="btn btn-success" target="_blank">프로젝트 바로가기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- collapse -->
+      <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+        <div>
+          <p class="fs-3">Donggeun Lee</p> 
+          <hr>
+          <div>
+            <i class="bi bi-phone fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePhone" aria-expanded="false" aria-controls="collapsePhone">CLICK</i>
+            <div class="collapse" id="collapsePhone">
+              <div class="card card-body">
+                010-0000-0000
+              </div>
+            </div>
+          </div>
+          <div>
+            <i class="bi bi-github fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapsegithub" aria-expanded="false" aria-controls="collapsegithub">CLICK</i>
+            <div class="collapse" id="collapsegithub">
+              <div class="card card-body">
+                https://github.com/Mokdasoo/SeSAC4
+              </div>
+            </div>
+          </div>
+          <div>
+            <i class="bi bi-mailbox fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEmail" aria-expanded="false" aria-controls="collapseEmail">CLICK</i>
+            <div class="collapse" id="collapseEmail">
+              <div class="card card-body">
+                dgstudylife@naver.com
+              </div>
+            </div>
+          </div>
+          
+      
+         </div>
+      </div>
+    </div>
+    
+   
+    
+
+
+
+    
+    
+
+    <script>$('#date-input').dateDropper({
+        format: 'Y-m-d'
+    });</script>
+
 </body>
 </html>
