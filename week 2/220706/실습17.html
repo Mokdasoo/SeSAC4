@@ -18,7 +18,7 @@
                 color: green;
                 font-weight: bold;
             }
-            day{
+            .day{
                 font-weight: bold;
             }
             .sunday{
@@ -58,7 +58,6 @@
                 var findtd = document.querySelectorAll("td");
                 var rightTd = findtd[Number($('#when').val())+11];
                 rightTd.appendChild(p);
-                $("#when").val("");
                 $("#content").val("");
             }
 
@@ -144,7 +143,7 @@
         </table>
 
         <div id="writer">
-            <div>날짜 : <input type="number" id="when"></div>
+            <div>날짜 : <input type="number" id="when" readonly></div>
             <div>내용 : <input type="text" id="content"></div>
             <button type="button" onclick="post()">작성</button>
             <button type="button" onclick="remove()">삭제</button>
