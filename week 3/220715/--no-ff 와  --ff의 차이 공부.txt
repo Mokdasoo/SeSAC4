@@ -1,0 +1,58 @@
+충돌이 날때는 어차피 수정후 add commit 을 하므로 차이를 알수 없음
+
+충돌이 안날때는 커밋메시지를 따로 추가하고 싶다면 --no-ff 옵션을 주어서 커밋메시지를 입력할 수 있게한다.
+
+
+(마스터에서)
+vi test.html
+git add .
+git commit -m "실습22 master branch test.html생성"
+git push origin master
+
+git branch "test"
+
+vi test.html
+git add .
+git commit -m "마스터브랜치에서 h5 수정"
+git push origin master
+
+git checkout test
+vi test.html
+git add .
+git commit -m "테스트브랜치에서 h5 title 수정"
+git push origin test
+
+git checkout master
+git merge --no-ff test
+git add .
+git commit -m "git Merge test --no-f 충돌해결"
+git push origin master
+
+
+
+
+//
+git checkout master
+git checkout -b test
+git commit -am "study1"
+git commit -am "study2"
+git push origin test
+git checkout master
+( git merge test )
+git push origin master
+
+Create a merge commit
+	git merge --no-ff  ~~~
+	ex) 
+	"merge
+	study2
+	study1"
+Squash and merge 
+	merge를 하나로 묶기
+	ex) 
+	"merge"
+Rebase and merge
+	git merge ~~
+	ex)
+	"study2
+	study1"
