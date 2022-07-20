@@ -6,7 +6,7 @@ function call(name){
         },1000);
     });
 }
-function back(cb){
+function back(){
     return new Promise( function (resolve, reject){
         setTimeout( function(){
             console.log("back");
@@ -14,7 +14,7 @@ function back(cb){
         },1000);
     });
 }
-function hell(cb){
+function hell(){
     return new Promise(function(resolve, reject){
         setTimeout(function(){
             resolve("callback hell");
@@ -22,9 +22,9 @@ function hell(cb){
     });
 }
 call('lee')
-    .then(function(user){
-        console.log(user + "반가워");
-        return back(user);
+    .then(function(name){
+        console.log(name + "반가워");
+        return back(name);
     })
     .then(function(txt){
         console.log(txt + "을 실행했구나");
