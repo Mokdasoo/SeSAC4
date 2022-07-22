@@ -58,11 +58,6 @@ function getDetail(video){
 // }
 
 
-
-
-
-
-
 async function exec(){
     let user = await login('kim', '1234');
     console.log(user+'님 환영');
