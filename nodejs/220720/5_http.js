@@ -3,7 +3,8 @@ const http = require("http");
 
 const server = http.createServer(async function(req, res){
     try{
-        const data = await fs.readFile("./simple.html");
+        console.log(req.url);
+        const data = await fs.readFile("./실습6.html");
         res.writeHead(200);
         res.end(data);
     } catch(err){
