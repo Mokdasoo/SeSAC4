@@ -3,12 +3,10 @@
         <title>EJS TEST</title>
     </head>
     <body>
-        <% for (var i = 0; i<5; i++){ %>
-            <% if(i==3){   %>
-                <h3>hi</h3>
-           <% }else{ %>
-                <h1>hi</h1>
-            <% } %>  
+        
+
+        <% for (var i = 0; i<list.length; i++){ %>
+            <h1><%=list[i]%></h1>
         <% } %>
 
         <% var a = 'Thank you'; %>
