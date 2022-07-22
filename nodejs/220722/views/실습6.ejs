@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>실습6</title>
+    <style>
+        .c{
+            width : 200px;
+            height : 200px;
+            border-radius: 100px;
+        }
+        .c1{
+            background-color: cornflowerblue;
+        }
+        .w_eye{
+            width : 70px;
+            height : 70px;
+            border-radius: 35px;
+            background-color: white;
+            position: relative;
+            top: 40px;
+            left: 50px;
+        }
+        .b_eye{
+            width : 40px;
+            height : 40px;
+            border-radius: 20px;
+            background-color: black;
+            position: relative;
+            top:10px
+        }
+        .c2{
+            background-color:dodgerblue;
+            position: relative;
+            left: 140px;
+            bottom: 100px;
+        }
+        .c3{
+            background-color:blue;
+            position: relative;
+            left: 80px;
+            top: 80px;
+
+        }
+        .c4{
+            background-color:lightblue;
+            position: absolute;
+            left:100px;
+        }
+        .c5{
+            background-color:cadetblue;
+            position: absolute;
+            left:225px;
+        }
+        .grass{
+            position:absolute;
+            width: 750px;
+            left:-220px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="c c1">
+        <div class="w_eye">
+            <div class="b_eye"></div>
+        </div>
+
+    </div>
+    
+    
+    <div class="c c2">
+        <div class="c c3">
+            
+            <div class="c c4"></div>
+            <img class = "grass" src = "../abc/grass.png" alt="잔디">
+            <div class="c c5"></div>
+        </div>
+    </div>
+
+    <%- include('test.ejs') %>
+    
+    
+</body>
+</html>

@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>EJS TEST</title>
+    </head>
+    <body>
+        <% for (var i = 0; i<5; i++){ %>
+            <% if(i==3){   %>
+                <h3>hi</h3>
+           <% }else{ %>
+                <h1>hi</h1>
+            <% } %>  
+        <% } %>
+
+        <% var a = 'Thank you'; %>
+        <p><%=a%></p>
+
+        <%- include('test2.ejs') %>
+
+    </body>
+</html>
