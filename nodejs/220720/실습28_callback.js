@@ -2,19 +2,37 @@ const fs = require("fs");
 const http = require("http");
 
 const server = http.createServer( function(req, res){
-    fs.readFile("./실습6.html", function(err, data){
-        if(err){
-            //promise 에서의 catch
-            console.error(err);
-            res.writeHead(404);
-            res.end(err.message);
-        }else{
-            //promise 에서의 try
-            console.log(req.url);
-            res.writeHead(200);
-            res.end(data);
-        }
-    });
+    if(req.url === '/'){
+        fs.readFile("./실습6.html", function(err, data){
+            if(err){
+                //promise 에서의 catch
+                console.error(err);
+                res.writeHead(404);
+                res.end(err.message);
+            }else{
+                //promise 에서의 try
+                console.log(req.url);
+                res.writeHead(200);
+                res.end(data);
+            }
+        });
+    }
+    else if(req.url === '/grass.png'){
+        fs.readFile("./grass.png", function(err, data){
+            if(err){
+                //promise 에서의 catch
+                console.error(err);
+                res.writeHead(404);
+                res.end(err.message);
+            }else{
+                //promise 에서의 try
+                res.writeHead(200);
+                res.write(data);
+                res.end();
+            }
+        });
+    }
+
     // try{
     //     console.log(req.url);
     //     const data = fs.readFile("./실습6.html");

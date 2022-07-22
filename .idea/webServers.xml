@@ -9,6 +9,13 @@
           </advancedOptions>
         </fileTransfer>
       </webServer>
+      <webServer id="eb190b87-fea4-4222-be94-b99896623de8" name="mokdasoo_topLevelPath" url="http://118.67.130.115">
+        <fileTransfer accessType="SFTP" host="118.67.130.115" port="22" sshConfigId="0772b988-8044-436f-aa34-5ef23c820235" sshConfig="root@118.67.130.115:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>
