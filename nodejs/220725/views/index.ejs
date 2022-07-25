@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Index.ejs</title>
+    </head>
+    <body>
+        <form action="/receive" method="GET">
+            <fieldset>
+                <legend>이름/성별</legend>
+                <label>
+                    이름 : 
+                    <input type="text" name="name" required>
+                </label><br>
+    
+                <input type="radio" name="gender" id="gender_1"value="man" required>
+                <label for="gender_1">남</label>
+                <input type="radio" name="gender" value="woman">여
+
+            </fieldset>
+            <fieldset>
+                <input type="checkbox" name="hobby" value="공부">공부
+                <input type="checkbox" name="hobby" value="독서">독서
+                <input type="checkbox" name="hobby" value="게임">게임<br>
+                <!-- <input type="date">
+                <input type="color">
+                <input type="number">
+                <input type="time">
+                <input type="password">
+                <input type="reset" value="Reset"> -->
+    
+                <select name="year">
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                </select>
+            </fieldset>
+            <button>전송</button>
+        </form>
+
+        <a href="/ex30"><button type="button">ex30 바로가기</button></a>
+        <a href="/ex31"><button type="button">ex31 바로가기</button></a>
+
+    </body>
+</html>
