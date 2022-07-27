@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Axios</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            function sendGet(){
+                axios({
+                    method: "get",
+                    url: "http://localhost:8080/receive",
+                    params:{
+                        name: "codee"
+                    }
+                }).then((a) => { return a.data; })
+                .then((d) => { 
+                    alert( d.message );
+                });
+            }
+            function sendPost(){
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/receive",
+                    data:{
+                        name: "codee"
+                    }
+                }).then((a) => { return a.data; })
+                .then((d) => { 
+                    alert( d.message );
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="sendGet();">sendGet</button>
+        <button onclick="sendPost();">sendPost</button>
+    </body>
+</html>

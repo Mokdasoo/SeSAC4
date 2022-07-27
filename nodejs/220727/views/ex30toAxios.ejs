@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>get으로 정보 받기</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <script>
+            function sendForm(){
+
+                var form = document.getElementById("form_info");
+
+                var result = form.checkValidity();
+                
+                if(!result){
+                    form.reportValidity();
+                    return false;
+                }
+                console.log(result);
+                let interests = [];
+                for ( let i = 0; i < form.interest.length; i++ ){
+                    let interest = form.interest[i];
+                    if ( interest.checked ) interests.push(interest.value );
+                }
+
+                axios({
+                    method: 'get',
+                    url: 'http://localhost:8080/ex3031-receive',
+                    params: {
+                        name: form.name.value,
+                        gender: form.gender.value,
+                        year : form.year.value,
+                        month : form.month.value,
+                        day : form.day.value,
+                        interest : interests
+                    }
+                }).then((a) => { return a.data; })
+                .then((d)=> {
+                    alert(d.name + "(성별 : "+d.gender + ")님 회원가입 성공");
+                });
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <form id="form_info">
+            폼 전송 - 실습<br>
+            <label>이름
+                <input type="text" name="name" required>
+            </label><br>
+            성별 
+            <label>
+                <input type="radio" name="gender" value="남자" required>남자
+            </label>
+            <label>
+                <input type="radio" name="gender" value="여자">여자
+            </label><br>
+            생년월일 
+            <select name="year">
+                
+                <%for(var year = 1950; year<=2022; year++){%>
+                    <option value=<%=year%>><%=year%></option>
+                <%}%>
+                
+            </select>년 
+
+            <select name="month">
+                
+                <%for(var month = 1; month<=12; month++){%>
+                    <option value=<%=month%>><%=month%></option>
+                <%}%>
+                
+            </select>월 
+
+            <select name="day">
+                
+                <%for(var day = 1; day<=31; day++){%>
+                    <option value=<%=day%>><%=day%></option>
+                <%}%>
+                
+            </select>일<br>
+
+            관심사 
+            <input type="checkbox" name="interest" value="여행">여행
+            <input type="checkbox" name="interest" value="패션">패션
+            <input type="checkbox" name="interest" value="음식">음식
+            <br>
+            <button type="button" onclick="sendForm();">회원가입</button>
+
+        </form>
+        
+
+
+
+
+    </body>
+</html>
