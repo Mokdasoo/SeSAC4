@@ -19,25 +19,31 @@ app.post("/login",function(req,res){
     let {ID, passwd} = req.body;
     
     console.log( ID + passwd);
-    let txtList;
-    fs.readFile("./info2.txt")
-    .then((input) => {
-        console.log(input);
-        input.toString().split('//');
-    });
+    
+    fs.readFile("./info2.txt", (err, data) => {
+        if(err) throw err;
+        else{
+            console.log(data);
+        }
+    }).then((value)=>{
+        return value.toString().split('//');
+    }).then((txtlist)=>{
+        console.log(txtlist);
+        let [a,b] = txtlist;
+       
+        console.log(a,b);
 
 
-    let a = input[0];
-    let b = input[1];
-    console.log(a,b);
+        if(ID == a && passwd == b){
+            res.send("<script>alert('login success');</script>");
+        } else{
+            res.send("<script>alert('login fail');</script>");
+        }
+
+    })
 
 
-    if(ID == a && passwd == b){
-        res.send("<script>alert('login success');</script>");
-    } else{
-        res.send("<script>alert('login fail');</script>");
-    }
-
+    
 });
 
 app.listen(port, ()=> {
