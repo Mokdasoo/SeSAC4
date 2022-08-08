@@ -6,7 +6,7 @@ const port = 8080;
 const bodyParser = require("body-parser");
 
 app.set("view engine", "ejs");
-app.use("/aa", express.static( "profileUploads" ) );
+app.use("/aa", express.static( "profiles" ) );
 app.use(express.urlencoded({extended: true}));
 app.use( bodyParser.json() );
 
