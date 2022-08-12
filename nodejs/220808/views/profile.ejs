@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 변경</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        
+        function readURL(input){//프로필이미지변경 미리보기
+            if(input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    document.getElementById('myprofileimg').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }else{
+                document.getElementById('myprofileimg').src = "../aa/<%=profileimg%>";
+            }
+        }
+
+        function profileCancel(){//프로필수정 취소
+            document.getElementById('myprofileimg').src = "../aa/<%=profileimg%>";
+            var form = document.getElementById("form_profile");
+            form.reset();
+
+            var html = "<button type='button' class='btn btn-outline-dark m-2' id='bt_profile' onclick='change_profile();'>프로필 이미지 수정</button>";
+            document.getElementById("control").innerHTML = html;
+        }
+
+        function change_profile(){
+            var html = "<input type='file' onchange='readURL(this);' name='selectfile' id='selectfile'>" +
+            "<button type='button' class='btn btn-success m-2' id='bt_profilesave' onclick='PorfileSave();'>저장</button>"+
+            "<button type='button' class= 'btn btn-secondary m-2' onclick ='profileCancel();'>취소</button>";
+            
+            document.getElementById("control").innerHTML = html;
+            
+
+        }
+        
+
+
+        async function PorfileSave(){
+            var formData = new FormData();
+            var file = document.getElementById("selectfile")
+            var id = $('#idvalue').text();
+            await axios({
+                    method: 'patch',
+                    url: 'http://localhost:8080/login/signin/profile',
+                    data: {
+                        id : id
+                    }
+                }).then((rep) => {return rep.data; })
+                .then((data) => {
+                    // alert(data);
+
+                    var tr = document.getElementById("tr_" + id);
+                    var children = tr.children;
+
+                    $(children[1]).text(form.name.value);
+                    $(children[2]).text(form.comment.value);
+                    console.log(children);
+                })
+                    
+            // formData.append("id", this.id);
+            // formData.append("profileimg", file.files[0]);
+            
+            // axios
+            //     .patch("http://localhost:8080/login/signin/edit/profile", formData, {
+            //         headers: {
+            //             "Content-Type": "multipart/form-data",
+            //         },
+            //     })
+            //     .then((res) => {
+            //         console.log(res);
+            //     })
+            //      .catch((err) => {
+            //         console.log(err);
+            //     });
+        }
+                
+    </script>
+</head>
+<body>
+    <form id="form_profile">
+        <div class="d-flex flex-column">
+            <div class="mb-3 row">
+                <label for="myprofileimg" class="col-sm-2 col-form-label"><span id="idvalue"><%=id%></span>님의 Profile Image</label>
+                <div class="col-sm-10" id="imgview">
+                    <img src="../aa/<%=profileimg%>" width=200 id="myprofileimg">
+                    <div id="control">
+                        <button type="button" class="btn btn-outline-dark m-2" id="bt_profile" onclick="change_profile();">프로필 이미지 수정</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

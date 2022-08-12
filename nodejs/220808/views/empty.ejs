@@ -1,0 +1,19 @@
+function readURL(input){//프로필이미지변경 미리보기
+    if(input.files && input.files[0]){
+        var reader = new FileReader();
+        reader.onload = function(e){
+            document.getElementById('myprofileimg').src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }else{
+         document.getElementById('myprofileimg').src = "../aa/<%=data.profileimg%>";
+    }
+}
+
+
+
+
+
+<h1><%- data.id %></h1>
+        <img src="../aa/<%=data.profileimg%>" width=200 id="myprofileimg"> 
+        <input type='file' onchange='readURL(this);' name='selectfile' id='selectfile'> 
