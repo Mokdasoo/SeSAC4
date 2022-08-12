@@ -61,14 +61,6 @@
                     document.getElementById("button-group").innerHTML = html;
                 });
             }
-            function editCancel(){
-                var form = document.getElementById("form_comment");
-                form.reset();
-
-                var html = "<button type='button' onclick = 'writeComment();'>등록</button>";
-                document.getElementById("button-group").innerHTML = html;
-            }
-
             function editDo( id ){
                 var form = document.getElementById("form_comment");
                 axios({
@@ -91,6 +83,15 @@
                     console.log(children);
                 })
             }
+            function editCancel(){
+                var form = document.getElementById("form_comment");
+                form.reset();
+
+                var html = "<button type='button' onclick = 'writeComment();'>등록</button>";
+                document.getElementById("button-group").innerHTML = html;
+            }
+
+            
 
         </script>
     </head>

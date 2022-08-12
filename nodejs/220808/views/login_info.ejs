@@ -4,16 +4,169 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImgView</title>
+    <title>회원정보/로그아웃</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        function memberManage(){//회원정보수정
+            $('#mypasswd').attr('readonly', false);
+            $('#myname').attr('readonly', false);
+            $('#myage').attr('readonly', false);
+
+            var html = "<button type='button' class='btn btn-success m-2' id='bt_membersave' onclick='memberSave();'>저장</button>"+
+                    "<button type='button' class= 'btn btn-secondary m-2' onclick = 'editCancel();'>취소</button>";
+            document.getElementById("div_membermanage").innerHTML = html;
+            
+
+        }
+        
+        
+        
+
+        function memberSave(){//회원정보수정후 저장
+            var html = "<button type='button' class='btn btn-outline-dark m-2' id='bt_membermanage' onclick='memberManage();'>회원정보수정</button>";
+            document.getElementById("div_membermanage").innerHTML = html;
+            $('#mypasswd').attr('readonly', true);
+            $('#myname').attr('readonly', true);
+            $('#myage').attr('readonly', true);
+
+            var form = document.getElementById("form_modify");
+            
+            let formdata = new FormData(form);
+
+            // formdata.append('id', form.myid.value);
+            // formdata.append('passwd', form.mypasswd.value);
+            // formdata.append('name', form.myname.value);
+            // formdata.append('age', form.myage.value);
+            // formdata.append('profileimg', imageFile);
+
+            // for (var pair of formdata.entries()) {
+            //     console.log(pair[0]+ ', ' + pair[1]); 
+            // }
+
+            axios({
+                    method: 'patch',
+                    url: 'http://localhost:8080/login/signin/edit',
+                    data: {
+                        id : form.myid.value,
+                        passwd : form.mypasswd.value,
+                        name : form.myname.value,
+                        age : form.myage.value
+                    }
+                }).then((rep) => {return rep.data; })
+                .then((data) => {
+                    alert(data);
+                    
+                })
+            
+            
+
+        }
+        function editCancel(){//회원정보수정 취소
+          
+          var form = document.getElementById("form_modify");
+          var vid = form.myid.value;
+          //form.reset();
+          axios({
+                    method: 'get',
+                    url: 'http://localhost:8080/login/signin/get?id='+ vid
+                })
+                .then((rep) => { return rep.data })
+                .then((data) => {
+                  form.mypasswd.value = data.result.passwd;
+                  form.myname.value = data.result.name;
+                  form.myage.value = data.result.age;
+
+
+                  $('#mypasswd').attr('readonly', true);
+                  $('#myname').attr('readonly', true);
+                  $('#myage').attr('readonly', true);
+                  
+
+                  var html = "<button type='button' class='btn btn-outline-dark m-2' id='bt_membermanage' onclick='memberManage();'>회원정보수정</button>";
+                  document.getElementById("div_membermanage").innerHTML = html;
+
+                });
+            
+            }
+
+        function DeleteMember(id){//회원탈퇴
+            axios({
+                    method : 'delete',
+                    url : 'http://localhost:8080/login/signin/delete',
+                    data: {id : id}
+                }).then((rep) => {return rep.data;})
+                .then((data) => {
+                    alert(data);
+                });
+
+        }
+        
+        
+
+    </script>
+
+
+
 </head>
 <body>
-    <img src="../profiles/<%=profileimg%>" width=100 alt="">
-    <div>
-        <p> id = <%=id%> </p>
-        <p> pw = <%=passwd%> </p>
-        <p> name = <%=name%> </p>
-        <p> old = <%=age%></p>
-        
-    </div>
+    <form id="form_modify">
+        <div class="d-flex flex-column">
+            
+            <div class="mb-3 row">
+                <label for="myid" class="col-sm-2 col-form-label">My ID</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control" name="myid" id="myid" value=<%=id%>>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="mypasswd" class="col-sm-2 col-form-label">My Password</label>
+                <div class="col-sm-10">
+                  <input type="password" readonly class="form-control" name="mypasswd" id="mypasswd" value=<%=passwd%>>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="myname" class="col-sm-2 col-form-label">My Name</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control" name="myname" id="myname" value=<%=name%>>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="myage" class="col-sm-2 col-form-label">My Age</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control" name="myage" id="myage" value=<%=age%>>
+                </div>
+            </div>
+            <div id="div_membermanage">
+                <button type="button" class="btn btn-outline-dark m-2" id="bt_membermanage" onclick="memberManage();">회원정보수정</button>
+            </div>
+            <div>
+                <button type="button" class="btn btn-outline-warning m-2" data-bs-toggle="modal" data-bs-target="#deletemodal">회원탈퇴</button>
+            </div>
+            
+        </div>
+
+    </form>
+
+
+    <div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="deletemodalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">회원탈퇴</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              정말 회원탈퇴를 하시겠습니까?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger"  id="bt_deletemember" onclick="DeleteMember('<%=id%>');"><a class="text-decoration-none text-reset" href="http://localhost:8080/login">회원탈퇴</a></button>
+              <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 </html>
