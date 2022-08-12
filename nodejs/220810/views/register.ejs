@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>회원가입</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+        <script>
+            function signup(){
+                var form = document.getElementById("form_signup");
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8000/user/signup',
+                    data: {
+                        id: form.id.value,
+                        passwd: form.passwd.value,
+                        name: form.name.value,
+                        age: form.age.value
+                    }
+                }).then((rep) => { 
+                    return rep.data;
+                 })
+                .then((data) => { 
+                    alert( data.name + "님 가입성공!" );
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <form id="form_signup">
+            id <input type="text" name="id" id="id"> <br>
+            passwd <input type="password" name="passwd"> <br>
+            name <input type="text" name="name"> <br>
+            age <input type="number" name="age"><br>
+            <button type="button" onclick="signup();">회원가입</button>
+
+        </form>
+        
+        
+
+    </body>
+</html>
