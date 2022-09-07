@@ -1,0 +1,109 @@
+.box {
+    margin-bottom: 100px;
+}
+.px {
+    width: 500px;
+    height: 500px;
+    background-color: coral;
+}
+
+.pct-parent {
+    width: 500px;
+    height: 500px;
+    background-color: plum;
+}
+
+.pct-child {
+    width: 50%; /*250px*/
+    height: 50%; /*250px*/
+    background-color: palegreen;
+}
+
+.em {
+    font-size: 2em;
+}
+.case1 {
+    font-size: 20px;
+}
+.case2 {
+    font-size: 10px;
+}
+.em-3 {
+    font-size: 3em;
+}
+.rem {
+    font-size: 2rem;
+}
+
+.vw {
+    height: 20vw;
+    width: 20vw;
+    background-color: gold;
+}
+
+.vh {
+    height: 20vh;
+    width: 20vh;
+    background-color: gold;
+}
+.test {
+    font-size: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    .px {
+        width: 900px;
+        height: 900px;
+        background-color: green;
+    }
+
+    .test {
+        font-size: 10vw;
+    }
+}
+
+.ib {
+    display: inline-block;
+}
+@media screen and (max-width: 575px) {
+    .cont{
+        width: 50vw;
+        height: 50vw;
+        background-color: rgb(145, 145, 145);
+    }
+}
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .cont{
+        width: 250px;
+        height: 250px;
+        background-color: rgb(102, 102, 102);
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .cont{
+        width: 300px;
+        height: 300px;
+        background-color: rgb(88, 88, 88);
+    }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .cont{
+        width: 300px;
+        height: 300px;
+        background-color: rgb(53, 53, 53);
+    }
+}
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+    .cont{
+        width: 320px;
+        height: 320px;
+        background-color: rgb(24, 24, 24);
+    }
+}
+@media screen and (min-width: 1400px) {
+    .cont{
+        width: 320px;
+        height: 320px;
+        background-color: rgb(0, 0, 0);
+    }
+}

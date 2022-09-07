@@ -2,7 +2,7 @@ const fs = require("fs").promises;
 const express = require("express");
 const bodyParser = require('body-parser');
 const app = express();
-const port = 8080;
+const port = 8000;
 const multer = require("multer");
 const path = require("path");
 let filename;
@@ -27,7 +27,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.json() );
 
 app.get("/", test, test2, function(req,res){
-    res.render("ex-fileupload");
+    res.render("signup");
 });
 
 
