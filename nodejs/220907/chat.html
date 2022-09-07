@@ -1,0 +1,113 @@
+<html>
+<head>
+    <title>Document</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+    <script>
+        var userInput = prompt("채팅방입장! 당신의 닉네임을 설정해주세요"+"");
+        var user = userInput;
+    </script>
+
+    <style>
+        .chat-list{
+            background-color: skyblue; 
+            width: 100%;
+            height: 50%;
+            padding: 10px;
+        }
+        .chat-list > div > div {
+            display: inline-block;
+            background-color: aliceblue;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 1px;
+        }
+        .mydiv{
+            text-align: right;
+        }
+        .mydiv > .myMSG{
+            text-align: right;
+            background-color: yellow;
+            
+        }
+        .enter {
+            background-color: lightsalmon;
+            text-align: center;
+        }
+        .exit {
+            background-color: rgb(184, 149, 135);
+            text-align: center;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="chat-list" class="chat-list"></div>
+    
+    채팅<input type="text" id="message">
+    <button type="button" onclick="send();">전송</button><br>
+    닉네임 <input type="text" id="nickname">
+    <button type="button" onclick="SetNick();">설정</button>
+    
+    
+    
+    <script>
+        var socket = io.connect();
+        var id = "";
+        
+        socket.on("newEnter", function(user){
+            
+            let chat_list = document.getElementById("chat-list");
+            let divin = document.createElement("div");
+            divin.className += 'enter';
+            divin.innerHTML = "<p>"+ user +"님이 입장하셨습니다.</p>";
+            chat_list.appendChild(divin);
+            
+
+        });
+        socket.on("info", function(data){
+            id = data.id;
+            user = data.user;
+            document.getElementById("nickname").value = user;
+            
+            
+            
+        });
+        function send(){
+            let msg = document.getElementById("message").value;
+            // socket.emit("send", {id:id, msg:msg, index:Index});
+            socket.emit("send", {id, msg, user});
+            document.getElementById("message").value = "";
+            
+        }
+        function SetNick(){
+            let nick = document.getElementById("nickname").value;
+            socket.emit("setNickName", {id, nick});
+            user = nick;
+        }
+        
+        socket.on("newMSG", function(data){
+            let chat_list = document.getElementById("chat-list");
+            let div = document.createElement("div");
+            let divtwo = document.createElement("div");
+            if(data.id == id){
+                div.className += 'mydiv';
+                divtwo.className += 'myMSG';
+            } 
+            divtwo.textContent = data.user + " : " + data.msg;
+            div.appendChild(divtwo);
+            chat_list.appendChild(div);
+            
+        });
+        socket.on("notice", function(data){
+                let chat_list = document.getElementById("chat-list");
+                let div = document.createElement("div"); // <div></div>
+                div.className += 'exit';
+                div.textContent =  data + "님이 퇴장하셨습니다."
+                
+                chat_list.appendChild(div);
+            });
+    </script>
+</body>
+</html>

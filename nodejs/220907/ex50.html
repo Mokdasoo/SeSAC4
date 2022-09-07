@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Document</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+
+</head>
+
+<body>
+    <h1>Hello World!</h1>
+    <button type="button" onclick="send('hello');">hello</button>
+    <button type="button" onclick="send('study');">study</button>
+    <button type="button" onclick="send('bye');">bye</button>
+    <p class="resView"></p>
+    
+    <script>
+        var socket = io.connect();
+
+        socket.on( "connect", function(){
+            console.log( "server connected!" );
+        });
+        
+        function send(e){
+            socket.emit('send', e);
+        }
+        
+        socket.on("clickResponse", function(data){
+            var resP = document.querySelector('.resView');            
+            resP.innerHTML = "<strong>" + data +"</strong>"            
+            
+        });
+
+    </script>
+</body>
+</html>
