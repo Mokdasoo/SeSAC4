@@ -8,29 +8,44 @@ app.get("/", function( req, res ){
     res.sendFile( __dirname + "/chat.html");  //ejs를 안썼기 때문에 senFile씀 ejs는 render 불러오면 됨
 });
 
-var index = 0;
-var obj = {
-};
+var saveList = {};
 io.on("connection", function(socket){
     console.log("Server Socket Connected");
     console.log("connected : ", socket.id);
-    index++;
-    obj[socket.id] = "사용자"+index;
-    io.emit("newEnter", obj[socket.id]);
-    socket.emit("info", {id:socket.id, user:obj[socket.id]});
+    
+
+    socket.on("sendNick", function(data){
+        saveList[socket.id] = data.nickname;
+        io.emit("newEnter", {id: socket.id, nickA:saveList[socket.id]});
+        io.emit("list", saveList);
+    });
+
 
     socket.on("setNickName", function(data){
-        obj[socket.id] = data.nick;
+        saveList[socket.id] = data.nick;
     });
 
     socket.on("send", function(data){
-        io.emit("newMSG", data);
+        console.log(data);
+        data["is_dm"] = false;
+        data["nickname"] = saveList[socket.id];
+        if ( data.to == "전체" ) {
+            io.emit("newMSG", data);
+        } else {
+            data["is_dm"] = true;
+            let socketID = Object.keys(saveList).find( (key) => { return saveList[key] === data.to; } );
+            console.log(socketID);
+            io.to(socketID).emit("newMSG", data);
+            socket.emit("newMSG", data);
+        }
+
     });
 
     socket.on("disconnect", function(){
-        console.log(obj[socket.id]);
-        io.emit("notice", obj[socket.id]);
-        delete obj[socket.id];
+        console.log(saveList[socket.id]);
+        io.emit("notice", saveList[socket.id]);
+        delete saveList[socket.id];
+        io.emit("list", saveList);
     });
 });
 
