@@ -3,100 +3,16 @@
     <title>Document</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./chat.css">
     
-
-    <style>
-        .container{
-            display: flex;
-        }
-        .chat-list-wrap {
-            width: 80vw;
-            height: 70vh;
-        }
-        .chat-list{
-            background-color: rgb(41, 131, 89); 
-            width: 100%;
-            height: 100%;
-            
-        }
-        .chat-list > div > div {
-            display: inline-block;
-            background-color: aliceblue;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 1px;
-        }
-        .person-list-wrap{
-            width: 20vw;
-            height: 70vh;
-        }
-        .person-list{
-            background-color: aquamarine;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-        }
-        .person-list > p{
-            margin: 0;
-        }
-        .mydiv{
-            text-align: right;
-        }
-        .mydiv > .myMSG{
-            text-align: right;
-            background-color: yellow;
-            
-        }
-        .enter {
-            background-color: rgb(36, 164, 255);
-            text-align: center;
-        }
-        .enter > p{
-            margin: 0;
-            
-        }
-        .exit {
-            background-color: rgb(26, 96, 146);
-            text-align: center;
-        }
-        .chat-wrap {
-            width: 100%;
-        }
-        #message{
-            width: 70vw;
-            height: 80px;
-            border: 0;
-            background-color: aliceblue;
-        }
-        button {
-
-            background-color: rgb(0, 196, 186);
-
-            border: none;
-
-            color: white;
-
-            width: 10vw;
-            height: 80px;
-
-            text-align: center;
-
-            text-decoration: none;
-
-            display: inline-block;
-
-            font-size: 16px;
-
-            margin: 0;
-
-            cursor: pointer;
-
-            }
-        
-    </style>
 </head>
 
 <body>
+    
     <div class="container">
         <div class="chat-list-wrap">
             <div id="chat-list" class="chat-list">
@@ -108,19 +24,31 @@
                 
             </div>
         </div>
+        <div class="ChatControll">
+            <div class="nickset-wrap">
+                
+                닉네임 <input type="text" id="nickname">
+                <button type="button" onclick="SetNick();" id="nickBT">설정</button>
+            </div>
+            
+            <div class="chat-wrap">
+                <div class="box box1">
+                    <select name="nick-list" id="nick-list">
+                        <option value="전체">전체</option>
+                    </select>
+                </div>
+                <div class="box box2">
+                    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                </div>
+                <div class="box box3">
+                    <button type="button" onclick="send();" id="sendBT">전송</button>
+                </div>
+                
+            </div>
+        </div>
     </div>
-    <select name="nick-list" id="nick-list">
-        <option value="전체">전체</option>
-    </select>
-    닉네임 <input type="text" id="nickname">
-    <button type="button" onclick="SetNick();">설정</button><br>
     
-    <div class="chat-wrap">
-        
-        <input type="text" id="message">
-        <button type="button" onclick="send();">전송</button><br>
-        
-    </div>
+    
     
     
     
@@ -140,7 +68,7 @@
             let chat_list = document.getElementById("chat-list");
             let divin = document.createElement("div");
             divin.className += 'enter';
-            divin.innerHTML = "<p>"+ data.nickA +"님이 입장하셨습니다.</p>";
+            divin.innerHTML = "<p>'"+ data.nickA +"'님이 입장하셨습니다.</p>";
             chat_list.appendChild(divin);
             if(data.id === socket.id)
             document.getElementById("nickname").value = data.nickA;
@@ -180,44 +108,69 @@
                 option.value = value;
                 nick_list.appendChild( option );
                 let person = document.createElement("p");
-                person.innerText = value;
+                let atag = `<a href='#' onclick='memberclick(this);'>${value}</a>`
+                person.innerHTML = atag;
                 person_list.appendChild( person );
 
             }
-
         })
         
+        function memberclick(atag){
+            document.getElementById("nick-list").value = atag.text;
+
+        }
         
         function SetNick(){
             let nick = document.getElementById("nickname").value;
             socket.emit("setNickName", {nick});
-            user = nick;
+            
         }
+        socket.on("nickcheck", function(data){
+            if(data.nickonly) user = nick;
+            else{
+                console.log(data);
+                document.getElementById("nickname").value = data.originNick;
+                let check = document.querySelector(".nickset-wrap");
+                let redspan = document.createElement("span");
+                redspan.className += 'redcheck';
+                redspan.innerText = '닉네임중복!!!';
+                check.appendChild(redspan);
+
+                console.log(check);
+
+            }
+        })
 
         function send(){
             let msg = document.getElementById("message").value;
+            msg = msg.replaceAll(/(\n|\r\n)/g, "<br>");
             let nick = document.getElementById("nick-list").value;
             // socket.emit("send", {id:id, msg:msg, index:Index});
             socket.emit("send", {id : socket.id, msg, user, to:nick});
             document.getElementById("message").value = "";
-            
         }
         
         socket.on("newMSG", function(data){
             let chat_list = document.getElementById("chat-list");
             let div = document.createElement("div");
             let divtwo = document.createElement("div");
-
-            divtwo.textContent = data.user + " : " + data.msg;
-            if ( data.is_dm ) divtwo.textContent = "(DM)" + divtwo.textContent;
+            div.className += 'normaldiv';
+            divtwo.className += 'normalMSG';
+            
+            divtwo.innerHTML = data.msg;
+            if ( data.is_dm ) divtwo.innerHTML = "(DM)" + divtwo.innerHTML;
 
             if(data.id == socket.id){
-                div.className += 'mydiv';
-                divtwo.className += 'myMSG';
-            } 
+                div.className += ' mydiv';
+                divtwo.className += ' myMSG';
+            }else{
+                div.innerHTML = "<div>"+data.user +"</div>";
+            }
             
             div.appendChild(divtwo);
             chat_list.appendChild(div);
+            document.getElementById("chat-list").scrollTop = document.getElementById("chat-list").scrollHeight;
+
 
 
 
@@ -232,7 +185,18 @@
                 div.textContent =  data + "님이 퇴장하셨습니다."
                 
                 chat_list.appendChild(div);
-            });
-    </script>
+        });
+
+
+        const textareaElement = document.getElementById("message");
+
+        textareaElement.addEventListener("keyup", (e) => {
+        if (e.keyCode === 13) {
+            if (!e.shiftKey) {
+            send();
+            }
+        }
+        });
+   </script>
 </body>
 </html>

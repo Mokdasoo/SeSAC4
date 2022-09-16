@@ -3,6 +3,9 @@ var app = express();
 var http = require( "http" ).Server( app );
 var io = require( "socket.io" )( http );
 
+app.use(express.static('public'));
+
+
 app.get("/", function( req, res ){
     console.log("client");
     res.sendFile( __dirname + "/chat.html");  //ejs를 안썼기 때문에 senFile씀 ejs는 render 불러오면 됨
@@ -22,7 +25,20 @@ io.on("connection", function(socket){
 
 
     socket.on("setNickName", function(data){
-        saveList[socket.id] = data.nick;
+        data["nickonly"] = true;
+        for( let [key,value] of Object.entries(saveList)){
+            if(value == data.nick){
+                data["nickonly"] =false; 
+                break;
+            } 
+        }
+        data['originNick'] = saveList[socket.id];
+        socket.emit("nickcheck", data);
+        if(data["nickonly"]){
+            saveList[socket.id] = data.nick;
+            io.emit("list", saveList);
+        }
+        
     });
 
     socket.on("send", function(data){
