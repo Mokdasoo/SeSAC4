@@ -104,10 +104,12 @@
             //     key = 'key2', value = '2';
             // }
             for( let [key,value] of Object.entries(list)){
-                let option = document.createElement("option");
-                option.text = value;
-                option.value = value;
-                nick_list.appendChild( option );
+                if(!(key == socket.id)){
+                    let option = document.createElement("option");
+                    option.text = value;
+                    option.value = value;
+                    nick_list.appendChild( option );
+                }
                 let person = document.createElement("p");
                 let atag = `<a href='#' onclick='memberclick(this);'>${value}</a>`
                 person.innerHTML = atag;
