@@ -29,6 +29,7 @@
                 
                 닉네임 <input type="text" id="nickname">
                 <button type="button" onclick="SetNick();" id="nickBT">설정</button>
+                <span class="redcheck hide">닉네임중복!!!</span>
             </div>
             
             <div class="chat-wrap">
@@ -130,11 +131,9 @@
             else{
                 console.log(data);
                 document.getElementById("nickname").value = data.originNick;
-                let check = document.querySelector(".nickset-wrap");
-                let redspan = document.createElement("span");
-                redspan.className += 'redcheck';
-                redspan.innerText = '닉네임중복!!!';
-                check.appendChild(redspan);
+                let check = document.querySelector(".redcheck");
+                check.classList.remove("hide");
+                setTimeout(() => check.classList.add("hide"), 2000);
 
                 console.log(check);
 
