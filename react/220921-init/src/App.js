@@ -41,8 +41,8 @@ function App() {
         {title}
       </div>
       <div style={{textAlign : 'center'}}>
-      <label for="inputid">아이디 : </label> <input className='input' type='text' id='inputid'></input><br></br>
-      <label for="inputpw">비밀번호 : </label> <input className='input' type='password' id='inputpw'></input>
+        <label htmlFor="inputid">아이디 : </label> <input className='input' type='text' id='inputid'></input><br></br>
+        <label htmlFor="inputpw">비밀번호 : </label> <input className='input' type='password' id='inputpw'></input>
       </div>
 
       <div style={{width: "100%", height: '50vh', marginTop: '20px'}}>
@@ -56,25 +56,25 @@ function App() {
         
       </div>
       <div>
-        <div class="c c1">
-            <div class="w_eye">
-                <div class="b_eye"></div>
+        <div className="c c1">
+            <div className="w_eye">
+                <div className="b_eye"></div>
             </div>
 
         </div>
         
         
-        <div class="c c2">
-            <div class="c c3">
+        <div className="c c2">
+            <div className="c c3">
                 
-                <div class="c c4"></div>
-                <img class="grass" src = "/images/grass.png" alt="잔디"></img>
-                <div class="c c5"></div>
+                <div className="c c4"></div>
+                <img className="grass" src = "/images/grass.png" alt="잔디"></img>
+                <div className="c c5"></div>
             </div>
         </div>
       </div>
       
-      <EX543Component text="App 컴포넌트에서 넘겨준 text props입니다." valid={valid} ></EX543Component>
+      <EX543Component text="App 컴포넌트에서 넘겨준 text props입니다." valid={valid} />
 
     </div>
     

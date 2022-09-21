@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 
-function ClassComponent (props){
+function EX2Component (props){
     return(
         <div style={{textAlign: 'center', width : '500px', height:'600px', backgroundColor: 'rgb(249, 249, 219)'}}>
             <div>
@@ -15,14 +15,10 @@ function ClassComponent (props){
                 <h3>판매가: {props.price}</h3>
                 <h3>구분: {props.type}</h3>
             </div>
-            
-        
         </div>
         
     )
 }
 
-ClassComponent.defaultProps = {
-}
 
-export default ClassComponent;
+export default EX2Component;

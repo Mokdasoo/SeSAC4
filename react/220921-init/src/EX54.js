@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-function ClassComponent (props){
+function EX1Component (props){
     return(
         <div>
             <h1 style={{color: 'red'}}>{props.food}</h1>
@@ -11,8 +11,8 @@ function ClassComponent (props){
     )
 }
 
-ClassComponent.defaultProps = {
+EX1Component.defaultProps = {
     food: 'kimchi'
 }
 
-export default ClassComponent;
+export default EX1Component;

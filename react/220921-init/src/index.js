@@ -14,13 +14,12 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* 개발자모드 같은 것 */}
-  <ClassComponent name= {1} location="문래">문자</ClassComponent>
+  <ClassComponent name= 'st' location="문래">문자</ClassComponent>
   <App />
-  <TestComponent></TestComponent>
-  <Test2Component></Test2Component>
-  <EX541Component></EX541Component>
-  <EX542Component title= "모던자바스크립트 딥다이브" author='이웅모' price='40,500원' type='IT'></EX542Component>
+  <TestComponent/>
+  <Test2Component/>
+  <EX541Component/>
+  <EX542Component title= "모던자바스크립트 딥다이브" author='이웅모' price='40,500원' type='IT'/>
   
   </React.StrictMode>
 );
