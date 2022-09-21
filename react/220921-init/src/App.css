@@ -1,0 +1,109 @@
+.test {
+    background-color: rgb(255, 248, 234);
+    color: orangered;
+    font-size: 40px;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    text-align: center;
+}
+.input{
+    /* margin-left: auto;
+    margin-right: auto; */
+    text-align: center;
+    margin-top: 30px;
+}
+.rainbow{
+    display: inline-block;
+    width: 12%;
+    vertical-align: top;
+}
+.red{
+    background-color: red;
+    height: 20%;
+}
+.orange{
+    background-color: orange;
+    height: 30%;
+}
+.yellow{
+    background-color: rgb(249, 249, 219);
+    height: 40%;
+}
+.green{
+    background-color: green;
+    height: 50%;
+}
+.blue{
+    background-color: blue;
+    height: 60%;
+}
+.navy{
+    background-color: navy;
+    height: 70%;
+}
+.purple{
+    background-color: purple;
+    height: 80%;
+}
+
+
+.c{
+    width : 200px;
+    height : 200px;
+    border-radius: 100px;
+}
+.c1{
+    background-color: cornflowerblue;
+}
+.w_eye{
+    width : 70px;
+    height : 70px;
+    border-radius: 35px;
+    background-color: white;
+    position: relative;
+    top: 40px;
+    left: 50px;
+}
+.b_eye{
+    width : 40px;
+    height : 40px;
+    border-radius: 20px;
+    background-color: black;
+    position: relative;
+    top:10px
+}
+.c2{
+    background-color:dodgerblue;
+    position: relative;
+    left: 140px;
+    bottom: 100px;
+}
+.c3{
+    background-color:blue;
+    position: relative;
+    left: 80px;
+    top: 80px;
+
+}
+.c4{
+    background-color:lightblue;
+    position: absolute;
+    left:100px;
+}
+.c5{
+    background-color:cadetblue;
+    position: absolute;
+    left:225px;
+}
+.grass{
+    position:absolute;
+    width: 750px;
+    left: -220px;
+    
+}
+
+
+.bookinfo{
+    display: inline-block;
+    text-align: left;
+}
