@@ -24,6 +24,10 @@ const Sample = () => {
 
     const onRemove = id => {
         const nextNames = names.filter(names => names.id !== id);
+        // const nextNames2 = names.filter((names) => {
+        //     return names.id !== id;
+        // });
+        
         setNames(nextNames);
     }
 
