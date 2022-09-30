@@ -1,0 +1,113 @@
+@import '~include-media/dist/include-media';
+@import '~open-color/open-color';
+$pink : pink;
+$yellow: yellow;
+$green: green;
+
+@mixin b1anim($a) {
+    animation: anim1 3s;
+    animation-iteration-count: infinite;
+    @keyframes anim1{
+        0%{
+            left: 0px;
+            top:0px;
+        }
+        25%{
+            left: $a;
+            top:0px;
+        }
+        50%{
+            left: $a;
+            top: $a;
+        }
+        75%{
+            left:0px;
+            top: $a;
+        }
+        100%{
+            left:0px;
+            top:0px;
+        }
+    };
+    
+}
+
+@mixin b2anim($b) {
+    animation: anim2 3s;
+    animation-iteration-count: infinite;
+    
+    @keyframes anim2{
+        0%{
+            left: 0px;
+            top:0px;
+        }
+        25%{
+            left:$b;
+            top:0px;
+        }
+        50%{
+            left:$b;
+            top:$b;
+        }
+        75%{
+            left:0px;
+            top:$b;
+        }
+        100%{
+            left:0px;
+            top:0px;
+        }
+    };
+    
+}
+
+@mixin b3anim($c) {
+    animation: anim3 3s;
+    animation-iteration-count: infinite;
+    
+    @keyframes anim3{
+        0%{
+            left: 0px;
+            top:0px;
+        }
+        25%{
+            left:$c;
+            top:0px;
+        }
+        50%{
+            left:$c;
+            top:$c;
+        }
+        75%{
+            left:0px;
+            top:$c;
+        }
+        100%{
+            left:0px;
+            top:0px;
+        }
+    };
+    
+}
+
+
+.ball{
+    width: 50px;
+    height: 50px;
+    position: relative;
+    border-radius: 50%;
+    
+    &.b1{
+        background-color: $pink;
+        @include b1anim(10px);
+    }
+    &.b2{
+        background-color: $yellow;
+        @include b2anim(20px);
+    }
+    &.b3{
+        background-color: $green;
+        @include b3anim(30px);
+    }
+
+}
