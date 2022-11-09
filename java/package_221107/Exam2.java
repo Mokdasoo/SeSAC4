@@ -1,4 +1,4 @@
-package pakage_221107;
+package package_221107;
 import java.util.Scanner;
 
 public class Exam2 {

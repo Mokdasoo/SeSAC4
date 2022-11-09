@@ -1,4 +1,4 @@
-package pakage_221107;
+package package_221107;
 
 public class Main2 {
 	
