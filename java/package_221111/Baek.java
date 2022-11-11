@@ -1,0 +1,14 @@
+package package_221111;
+
+public class Baek extends Student{
+    public Baek(String name, String school, int age, int studentNumber){
+        setName(name);
+        setSchool(school);
+        setAge(age);
+        setStudentNumber(studentNumber);
+    }
+    @Override
+    public void todo() {
+        System.out.println("점심은 백종원 피자");
+    }
+}
