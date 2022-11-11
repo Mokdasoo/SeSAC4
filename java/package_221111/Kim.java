@@ -3,10 +3,7 @@ package package_221111;
 public class Kim extends Student{
 
     public Kim(String name, String school, int age, int studentNumber){
-        setName(name);
-        setSchool(school);
-        setAge(age);
-        setStudentNumber(studentNumber);
+        super(name, school, age, studentNumber);
     }
     @Override
     public void todo() {

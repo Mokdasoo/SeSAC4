@@ -6,38 +6,12 @@ public abstract class Student{
     private int age;
     private int studentNumber;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Student(String name, String school, int age, int studentNumber){
         this.name = name;
-    }
-
-    public String getSchool() {
-        return school;
-    }
-
-    public void setSchool(String school) {
         this.school = school;
+        this. age = age;
+        this. studentNumber = studentNumber;
     }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getStudentNumber() {
-        return studentNumber;
-    }
-
-    public void setStudentNumber(int studentNumber) {
-        this.studentNumber = studentNumber;
-    }
-
     public abstract void todo();
 
 
