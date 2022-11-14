@@ -6,5 +6,28 @@
 </head>
 <body>
   <h1 th:text="'로그인 메시지: '+${text}"></h1>
+  <p th:utext="${utext}"></p>
+<input type="text" th:value="${text}">
+<div th:with="temp=${text}" th:text="${temp}"></div>
+<div th:switch="${text}">
+    <p th:case="'hi'">hi</p>
+    <p th:case="'hello'">hello</p>
+    <p th:case="*"> other </p>
+</div>
+<p th:if="${text}=='web'" th:text="${text}"></p>
+<p th:unless="${text}=='web'" th:text="'web이 아님'"></p>
+
+<ul>
+    <li th:each="name:${names}" th:text="${name}"></li>
+</ul>
+
+<ul>
+    <li th:each="ageEach:${age}" >
+        <span th:if="${ageEach}>20" th:text="${ageEach} + '세는 성인입니다'"></span>
+        <span th:unless="${ageEach}>20" th:text="${ageEach} + '세는 미성년자입니다'"></span>
+    </li>
+</ul>
+
+
 </body>
 </html>
