@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js" integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <title>Visitor</title>
+    <style>
+        table{
+            width: 100%;
+            border: 1px solid #444444;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #444444;
+            padding: 10px;
+            white-space: nowrap;
+        }
+    </style>
+
+    <script>
+        function reducer(state = {cnt: 0, boards: []}, action){
+            // state : 현재 상태 -> 변경되기 전,
+            // action : dispatch를 호출할 때 넣었던 객체 
+            if(action.type === 'ADD'){
+                return {
+                    cnt : state.cnt + 1,
+                    boards : [...state.boards, {no: action.no, name: action.name, content: action.content}]
+                };
+            }
+            if(action.type === 'DELETE'){
+                const filterBoards = state.boards.filter(element => element.no !== action.num);
+                return {
+                    cnt : state.cnt,
+                    boards: filterBoards
+                };
+            }
+            return state;
+        }
+
+        const store = Redux.createStore(reducer);
+        const submitHandler = () =>{
+            const form = document.getElementById('visitForm');
+            const {cnt} = store.getState();
+            store.dispatch({
+                type: 'ADD',
+                no: cnt + 1,
+                name: form.name.value,
+                content: form.content.value
+            });
+        };
+        const deleteTR = (num) => {
+            store.dispatch({
+                type: 'DELETE',
+                num: num
+            });
+
+        };
+
+        const updateView = () => {
+            const state = store.getState();
+            const visitorTable = document.getElementById("visitorTable");
+            visitorTable.innerHTML = '';
+
+            for(const element of state.boards){
+                console.log(element);
+                const tr = document.createElement('tr');
+                tr.id = "tr_" + element.no
+                const td1 = document.createElement('td');
+                td1.innerText = element.no;
+                const td2 = document.createElement('td');
+                td2.innerText = element.name;
+                const td3 = document.createElement('td');
+                td3.innerText = element.content;
+                const td4 = document.createElement('td');
+                td4.innerHTML = `<button onclick='deleteTR(${element.no});'>삭제</button>`;
+                tr.append(td1);
+                tr.append(td2);
+                tr.append(td3);
+                tr.append(td4);
+                visitorTable.append(tr);
+            }
+            
+            
+
+            console.log(state);
+        };
+        store.subscribe(updateView);
+
+        
+
+    </script>
+</head>
+<body>
+    <form id="visitForm">
+        <div>
+            <label for="name">이름 : </label>
+            <input type="text" id="name">
+        </div>
+        <div>
+            <label for="content">내용 : </label>
+            <input type="text" id="content">
+            <button type="button" onclick="submitHandler();">작성</button>
+        </div>
+    </form>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>이름</th>
+                <th>내용</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody id="visitorTable">
+            
+        </tbody>
+        
+    </table>
+</body>
+</html>

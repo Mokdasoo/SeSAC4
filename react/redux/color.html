@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js" integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        .box-wrap{
+            width: 100%;
+            height: 100%;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            border: 2px black solid;
+            text-align: center;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        function reducer(state, action){
+            // state : 현재 상태 -> 변경되기 전,
+            // action : dispatch를 호출할 때 넣었던 객체
+            if(action.type === 'CHANGE'){
+                return {color : action.color};
+            }
+        }
+        const store = Redux.createStore(reducer);
+
+
+
+        // function onRed() {
+        //     const box = document.querySelector(".red");
+        //     let {color} = store.getState();
+            
+        //     box.style.backgroundColor = color;
+                  
+        // }
+        // function onGreen() {
+        //     const box = document.querySelector(".green");
+        //     box.style.backgroundColor = color;
+        // }
+        // function onYellow(){
+        //     const box = document.querySelector(".yellow");
+        //     box.style.backgroundColor = color;
+        // }
+        // store.subscribe(red);
+        // store.subscribe(green);
+        // store.subscribe(yellow);
+
+        function changeAll(){
+            const state = store.getState();
+            document.querySelector(".red").style.backgroundColor = state.color;
+            document.querySelector(".green").style.backgroundColor = state.color;
+            document.querySelector(".yellow").style.backgroundColor = state.color;
+        }
+        store.subscribe(changeAll);
+    </script>
+</head>
+<body>
+    <div class="box-wrap">
+        <div class="box red">
+            <h2>red</h2>
+            <button onclick="store.dispatch({type:'CHANGE', color: 'red'});">red</button>
+        </div>
+        <div class="box green">
+            <h2>green</h2>
+            <button onclick="store.dispatch({type:'CHANGE', color: 'green'});">green</button>
+        </div>
+        <div class="box yellow">
+            <h2>yellow</h2>
+            <button onclick="store.dispatch({type:'CHANGE', color: 'yellow'});">yellow</button>
+        </div>
+    </div>
+    
+</body>
+</html>
