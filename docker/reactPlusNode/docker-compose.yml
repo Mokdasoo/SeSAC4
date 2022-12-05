@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  front-project:
+    image: "node"
+    working_dir: /app
+    volumes:
+      - /app/node_modules
+      - './front-project/:/app'
+    ports:
+      - "3000:3000"
+    command: bash -c "npm install && npm run start"
+  BE:
+    image: "node"
+    working_dir: /app
+    volumes:
+      - /app/node_modules
+      - './BE/:/app'
+    ports:
+      - "8000:8000"
+    command: bash -c "npm install && node index"
